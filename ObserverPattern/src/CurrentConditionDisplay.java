@@ -1,8 +1,8 @@
-public class CurrentCodeConditionDisplay implements Observer, DisplayElement{
+public class CurrentConditionDisplay implements Observer, DisplayElement{
     private float temperature;
     private float humidity;
     private Observable weatherData;
-    public CurrentCodeConditionDisplay(Observable weatherData){
+    public CurrentConditionDisplay(Observable weatherData){
         this.weatherData = weatherData;
         weatherData.addObservers(this);
     }
