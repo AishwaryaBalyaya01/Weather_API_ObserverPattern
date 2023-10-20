@@ -1,30 +1,24 @@
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class WeatherData implements Observable{
-    ArrayList<Observer> observers;
+public class WeatherData extends Observable {
     private float temperature;
     private float humidity;
+
+    public float getTemperature() {
+        return temperature;
+    }
+
+    public float getHumidity() {
+        return humidity;
+    }
+
+    public float getPressure() {
+        return pressure;
+    }
+
     private float pressure;
-    public WeatherData(){
-        observers = new ArrayList<>();
-    }
-    @Override
-    public void addObservers(Observer o) {
-        observers.add(o);
-    }
-
-    @Override
-    public void removeObservers(Observer o) {
-        int i = observers.indexOf(o);
-        observers.remove(i);
-    }
-
-    @Override
-    public void notifyObservers() {
-        for(Observer observer: observers){
-            observer.update(temperature, humidity, pressure);
-        }
-    }
+    public WeatherData(){};
 
     public void setMeasurements(float temperature, float humidity, float pressure) {
         this.temperature = temperature;
@@ -34,6 +28,7 @@ public class WeatherData implements Observable{
     }
 
     private void measurementsChanged() {
+        setChanged();
         notifyObservers();
     }
 }
